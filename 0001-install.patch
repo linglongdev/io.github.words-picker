@@ -1,0 +1,46 @@
+From 61f785107bd8883b76a86aa8814611619a82edd2 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Tue, 20 Aug 2024 15:50:18 +0800
+Subject: [PATCH] install
+
+---
+ .../usr/share/applications/words-picker.desktop             | 4 ++--
+ src/CMakeLists.txt                                          | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/deb/words-picker/usr/share/applications/words-picker.desktop b/deb/words-picker/usr/share/applications/words-picker.desktop
+index 92d4e00..f6c51f6 100644
+--- a/deb/words-picker/usr/share/applications/words-picker.desktop
++++ b/deb/words-picker/usr/share/applications/words-picker.desktop
+@@ -3,8 +3,8 @@ Version=1.0
+ Categories=Dictionary;Application;Utility;
+ Comment=words-picker,dict
+ Encoding=UTF-8
+-Exec=/opt/words-picker/words-picker
+-Icon=/opt/words-picker/words-picker.png
++Exec=words-picker
++Icon=words-picker
+ Name=words-picker
+ StartupNotify=true
+ Terminal=false
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 2fbe918..05acd0e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -43,10 +43,10 @@ target_link_libraries(
+ 
+ # 复制桌面入口文件
+ # set(CMAKE_INSTALL_PREFIX /usr)
+-install(FILES ../deb/words-picker/usr/share/applications/words-picker.desktop DESTINATION /usr/share/applications/)
++install(FILES ../deb/words-picker/usr/share/applications/words-picker.desktop DESTINATION share/applications)
+ 
+ # 复制words-picker目录
+ set(DES_DIR ../deb/words-picker/opt/words-picker/)
+ MESSAGE( STATUS ${DES_DIR})
+-install(DIRECTORY ${DES_DIR} DESTINATION /opt/words-picker)
+-install(TARGETS words-picker DESTINATION /opt/words-picker/)
++install(FILES ../deb/words-picker/opt/words-picker/words-picker.png DESTINATION share/icons)
++install(TARGETS words-picker DESTINATION bin)
+-- 
+2.43.4
+
