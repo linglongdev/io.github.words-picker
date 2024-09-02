@@ -1,0 +1,31 @@
+version: "1"
+
+package:
+  id: io.github.words-picker
+  name: words-picker
+  version: 53.8.1.1
+  kind: app
+  description: |
+    取词应用
+
+command:
+  - /opt/apps/io.github.words-picker/files/bin/words-picker
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/ziqiangxu/words-picker.git
+    version: master
+    commit: 5a3f92f32cc601cf019f1b8df59990e90b5a83fe
+
+
+build: |
+  cd /project/linglong/sources/words-picker.git
+  git apply ../../../0001-install.patch
+  mkdir build
+  cd build
+  cmake .. \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}
+  cmake --build . --target install -j$(nproc --all)
